@@ -8,6 +8,18 @@
   "interactions": [
     {
       "description": "A get request for data",
+      "providerState": "An request for data not found",
+      "request": {
+        "method": "GET",
+        "path": "/data",
+        "query": "id=not_found_id"
+      },
+      "response": {
+        "status": 404
+      }
+    },
+    {
+      "description": "A get request for data",
       "providerState": "An request for data",
       "request": {
         "method": "GET",
