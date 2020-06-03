@@ -1,0 +1,27 @@
+{
+  "consumer": {
+    "name": "my-consumer"
+  },
+  "provider": {
+    "name": "my-api"
+  },
+  "interactions": [
+    {
+      "description": "A get request for data",
+      "providerState": "An request for data",
+      "request": {
+        "method": "GET",
+        "path": "/data",
+        "query": "id=not_found_id"
+      },
+      "response": {
+        "status": 404
+      }
+    }
+  ],
+  "metadata": {
+    "pactSpecification": {
+      "version": "2.0.0"
+    }
+  }
+}
