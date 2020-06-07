@@ -1,10 +1,6 @@
-﻿using System.Threading;
-using System.Threading.Tasks;
-using ComPact.Verifier;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.TestHost;
+﻿using ComPact.Models;
+using Helpers;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using Moq;
 using Xunit;
 using Xunit.Abstractions;
@@ -13,37 +9,39 @@ namespace DataApi.PactTests
 {
     public class ConsumerContractTests
     {
-        private readonly string _url;
+        private readonly ContractVerifier<Startup> _contractVerifier;
 
         public ConsumerContractTests(ITestOutputHelper testOutput)
         {
-            _url = "http://localhost:9494";
+            const int servicePort = 9494;
+
+            _contractVerifier = new ContractVerifier<Startup>(testOutput, servicePort);
         }
 
         [Fact]
-        public async Task VerifyInteractionWithClient()
+        public void VerifyInteractionWithClient()
         {
             var idServiceMock = new Mock<IDetermineIfIdsAreValid>();
-            var providerState = new DataControllerHandler(idServiceMock);
 
-            var pactVerifier = new PactVerifier(new PactVerifierConfig { ProviderBaseUrl = _url, ProviderStateHandler = providerState.Handle });
+            void ConfigureDi(IServiceCollection services)
+            {
+                services.AddSingleton(s => idServiceMock.Object);
+            }
 
-            var cts = new CancellationTokenSource();
-
-            var hostTask = new HostBuilder()
-                .ConfigureWebHostDefaults(c =>
+            void ConfigureState(ProviderState providerState)
+            {
+                if (providerState.Name == "An request for data")
                 {
-                    c.UseStartup<Startup>();
-                    c.UseEnvironment("Development");
-                    c.ConfigureTestServices(services => { services.AddSingleton(s => idServiceMock.Object); });
-                    c.UseUrls(_url);
-                }).Build().RunAsync(cts.Token);
+                    idServiceMock.Setup(x => x.IsValidId(It.IsAny<string>())).Returns(true);
+                }
 
-            const string pactDir = "../../../../pacts/";
-            await pactVerifier.VerifyPactAsync(pactDir + "client-data-api.json");
+                if (providerState.Name == "An request for data not found")
+                {
+                    idServiceMock.Setup(x => x.IsValidId(It.IsAny<string>())).Returns(false);
+                }
+            }
 
-            cts.Cancel();
-            await hostTask;
+            _contractVerifier.VerifyPact("data-api", "client", ConfigureState, ConfigureDi);
         }
     }
 }

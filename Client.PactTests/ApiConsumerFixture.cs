@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Net.Http;
 using ComPact.Builders.V2;
+using Helpers;
 
 namespace Client.PactTests
 {
@@ -8,17 +9,16 @@ namespace Client.PactTests
     {
         public ApiClient _apiClient;
 
-        public PactBuilder PactBuilder { get; }
+        public PactBuilder _pactBuilder { get; }
 
         public ApiConsumerFixture()
         {
-            const string mockServerBaseUrl = "http://localhost:5000";
+            const int mockServerPort = 5000;
 
-            PactBuilder = new PactBuilder("client", "data-api", mockServerBaseUrl, pactDir: "../../../../pacts/");
-
-            _apiClient = new ApiClient(new HttpClient { BaseAddress = new Uri(mockServerBaseUrl) });
+            _pactBuilder = ContractBuilder.BuildConsumerBuilder("client", "data-api", mockServerPort);
+            _apiClient = new ApiClient(new HttpClient { BaseAddress = new Uri($"http://localhost:{mockServerPort}") });
         }
 
-        public void Dispose() => PactBuilder.BuildAsync().GetAwaiter().GetResult();
+        public void Dispose() => _pactBuilder.BuildAsync().GetAwaiter().GetResult();
     }
 }

@@ -15,8 +15,7 @@ namespace Client.PactTests
         public ApiTests(ApiConsumerFixture fixture)
         {
             _apiClient = fixture._apiClient;
-
-            _pactBuilder = fixture.PactBuilder;
+            _pactBuilder = fixture._pactBuilder;
         }
 
         [Fact]
@@ -38,7 +37,7 @@ namespace Client.PactTests
         }
 
         [Fact]
-        public async Task get_api_data_not_found()
+        public void get_api_data_not_found()
         {
             _pactBuilder.SetUp(Pact.Interaction.Given(
                     $"An request for data not found")
@@ -49,13 +48,7 @@ namespace Client.PactTests
                 .WillRespondWith(Pact.Response
                     .WithStatus((int)HttpStatusCode.NotFound)));
 
-            try
-            {
-                await _apiClient.Get("not_found_id");
-            }
-            catch (Exception e)
-            {
-            }
+            Assert.Throws<Exception>(() => _apiClient.Get("not_found_id").GetAwaiter().GetResult());
         }
     }
 }

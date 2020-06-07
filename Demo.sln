@@ -3,18 +3,20 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30002.166
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataApi", "DataApi\DataApi.csproj", "{470BDC67-E0A2-4246-B263-2458BA49437E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataApi", "DataApi\DataApi.csproj", "{470BDC67-E0A2-4246-B263-2458BA49437E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataApi.PactTests", "DataApi.PactTests\DataApi.PactTests.csproj", "{0AF62FCD-E098-428B-9BE4-C0B3F1D5BFE6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataApi.PactTests", "DataApi.PactTests\DataApi.PactTests.csproj", "{0AF62FCD-E098-428B-9BE4-C0B3F1D5BFE6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Client.PactTests", "Client.PactTests\Client.PactTests.csproj", "{97DFE17A-D69F-4A61-B4BA-7B38869DD4F6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Client.PactTests", "Client.PactTests\Client.PactTests.csproj", "{97DFE17A-D69F-4A61-B4BA-7B38869DD4F6}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "pacts", "pacts", "{FFB4CE39-792C-4294-849E-0BDDFC883001}"
 	ProjectSection(SolutionItems) = preProject
 		pacts\client-data-api.json = pacts\client-data-api.json
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Client", "Client\Client.csproj", "{CEA2045C-AFC0-4E5E-9850-82E2CED7418B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Client", "Client\Client.csproj", "{CEA2045C-AFC0-4E5E-9850-82E2CED7418B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Helpers", "Helpers\Helpers.csproj", "{8B7D6ED8-5FA0-4161-A608-F26D9B06B7E3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -38,6 +40,10 @@ Global
 		{CEA2045C-AFC0-4E5E-9850-82E2CED7418B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CEA2045C-AFC0-4E5E-9850-82E2CED7418B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CEA2045C-AFC0-4E5E-9850-82E2CED7418B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8B7D6ED8-5FA0-4161-A608-F26D9B06B7E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8B7D6ED8-5FA0-4161-A608-F26D9B06B7E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8B7D6ED8-5FA0-4161-A608-F26D9B06B7E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8B7D6ED8-5FA0-4161-A608-F26D9B06B7E3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
