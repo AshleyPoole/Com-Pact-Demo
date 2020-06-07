@@ -31,8 +31,8 @@ namespace Client.PactTests
                 .WillRespondWith(Pact.Response
                     .WithStatus((int) HttpStatusCode.OK)
                     .WithBody(Pact.JsonContent.With(
-                        Some.Element.Named("Id").WithTheExactValue("123"),
-                        Some.Element.Named("SomeInt").WithTheExactValue(1)))));
+                        Some.Element.Named("id").WithTheExactValue("123"),
+                        Some.Element.Named("someInt").WithTheExactValue(1)))));
 
             await _apiClient.Get("123");
         }

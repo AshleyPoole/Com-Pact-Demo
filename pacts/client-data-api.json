@@ -29,8 +29,8 @@
       "response": {
         "status": 200,
         "body": {
-          "Id": "123",
-          "SomeInt": 1
+          "id": "123",
+          "someInt": 1
         }
       }
     }

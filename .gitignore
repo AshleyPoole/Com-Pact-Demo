@@ -1,0 +1,13 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs/**
+/Client/bin/**
+/Client/obj/**
+/Client.PactTests/bin/**
+/Client.PactTests/obj/**
+/DataApi/bin/**
+/DataApi/obj/**
+/DataApi.PactTests/bin/**
+/DataApi.PactTests/obj/**
